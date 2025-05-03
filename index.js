@@ -15,8 +15,22 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 app.use(express.json());
-app.options('*', cors()); // Make sure OPTIONS preflight requests are handled
+const allowedOrigins = [
+  'https://ecomm-admin-main.vercel.app',
+  'https://wesupplyfood-shop.vercel.app'
+];
 
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'OPTIONS'],
+  credentials: true,
+}));
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('MongoDB connection error:', err));
