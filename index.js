@@ -17,6 +17,8 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.json());
 const allowedOrigins = [
   'https://ecomm-admin-main.vercel.app',
+  'https://ecomm-backend-main.vercel.app',
+
   'https://wesupplyfood-shop.vercel.app'
 ];
 
