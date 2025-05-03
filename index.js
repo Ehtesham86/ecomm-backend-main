@@ -19,8 +19,7 @@ const allowedOrigins = [
   'https://ecomm-admin-main.vercel.app',
   'https://wesupplyfood-shop.vercel.app',
 
-  'https://wesupplyfood-shop.vercel.app'
-];
+ ];
 
 app.use(cors({
   origin: function (origin, callback) {
